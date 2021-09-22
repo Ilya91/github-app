@@ -1,5 +1,5 @@
-import * as React from "react"
-import {useDispatch, useSelector} from 'react-redux';
+import React from "react"
+import {useDispatch} from 'react-redux';
 import { Route, Switch, Redirect, Link } from "react-router-dom"
 import List from './components/List'
 import Single from './components/Single'
@@ -14,12 +14,17 @@ import {
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import NewUser from "./components/NewUser";
+import {useCallback} from "react";
 
 const App = () => {
   const dispatch = useDispatch();
-  const addNewUserHandler = (name: string) => {
-    dispatch(fetchUserData(name));
-  }
+
+  const addNewUserHandler = useCallback(
+      (name: string) => {
+        dispatch(fetchUserData(name));
+      },
+      [dispatch],
+  )
 
   return (
   <ChakraProvider theme={theme}>

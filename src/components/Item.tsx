@@ -6,12 +6,19 @@ import {
   Avatar,
   Text
 } from "@chakra-ui/react"
-import { Link, Route, useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as React from "react";
 
-const Item = (props: { id: string; avatar: string; name: string; repos: string; }) => (
-      <ListItem marginBottom={"15px"}>
-        <Flex textAlign={"left"} border={"1px solid #e2e8f0"} borderRadius={"12px"} padding={"10px"}>
+interface ItemValue {
+  id: string;
+  avatar: string;
+  name: string;
+  repos: number;
+}
+
+const Item = (props: ItemValue) => (
+      <ListItem marginBottom="15px">
+        <Flex textAlign="left" border="1px solid #e2e8f0" borderRadius="12px" padding="10px">
 
           <Avatar src={props.avatar} />
           <Box ml="3">

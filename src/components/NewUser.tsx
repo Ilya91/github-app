@@ -5,27 +5,29 @@ import {
   Button
 } from "@chakra-ui/react"
 import { useHistory } from "react-router-dom"
-import { useRef } from 'react';
+import {SyntheticEvent, useState} from 'react';
 import React from "react";
 
 const NewUser = (props: { addNewUser: (arg0: any) => void; }) => {
-  const inputRef = useRef();
+  const [enteredName, setEnteredName] = useState('')
   let history = useHistory()
+    const changeHandler = (event: SyntheticEvent) => {
+      setEnteredName(event.target.value)
+    }
 
-  const submitHandler = (event: { preventDefault: () => void; }) => {
+  const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault();
 
-    const name = inputRef.current.value;
-    props.addNewUser(name);
+    props.addNewUser(enteredName);
     history.push('/users')
   };
   return (
       <form onSubmit={submitHandler}>
-        <FormControl id="name" isRequired width={"300px"} marginBottom={"10px"}>
+        <FormControl id="name" isRequired width="300px" marginBottom="10px">
           <FormLabel>Name</FormLabel>
-          <Input placeholder="Name" ref={inputRef}/>
+          <Input placeholder="Name" onChange={changeHandler}/>
         </FormControl>
-        <Button type={"submit"} colorScheme="blue" width={"100%"}>Add new user</Button>
+        <Button type="submit" colorScheme="blue" width="100%">Add new user</Button>
       </form>
   )
 }
