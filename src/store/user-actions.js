@@ -1,25 +1,24 @@
-import { userActions } from './user-slice';
+import {userActions} from './user-slice';
 
 export const fetchUserData = (name) => {
     return async (dispatch) => {
         const fetchData = async () => {
             const response = await fetch(
-                'https://api.github.com/users/' + name
+                `https://api.github.com/users/${name}`
             );
 
             if (!response.ok) {
                 throw new Error('Could not fetch user data!');
             }
 
-            const data = await response.json();
-            return data;
+            return await response.json();
         };
 
-        const userData = await fetchData();
+        const user = await fetchData();
 
         dispatch(
-            userActions.addUser({
-                user: userData
+            userActions.newUser({
+                user
             })
         );
     };

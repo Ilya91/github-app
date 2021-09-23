@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
     name: 'users',
@@ -6,7 +6,8 @@ const userSlice = createSlice({
         users: JSON.parse(localStorage.getItem("users") || "[]")
     },
     reducers: {
-        addUser(state, action) {
+        newUser(state, action) {
+            console.log(state.users)
             const newItem = action.payload.user;
             const existingItem = state.users.find((user) => user.id === newItem.id);
 
@@ -24,12 +25,7 @@ const userSlice = createSlice({
         },
         getUser(state, action){
             const id = action.payload;
-            console.log(id);
-            return {
-                users: [
-                    ...state.users.filter((user) => user.id === id)
-                ]
-            };
+            return state.users.find((user) => user.id == id);
         }
     },
 });
