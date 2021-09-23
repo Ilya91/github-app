@@ -20,7 +20,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   const addNewUserHandler = useCallback(
-      (name: string) => {
+      (name: string):void => {
         dispatch(fetchUserData(name));
       },
       [dispatch],

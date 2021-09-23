@@ -19,13 +19,13 @@ const Single = () => {
             <Avatar
                 borderRadius="full"
                 boxSize="150px"
-                src={user.avatar}
+                src={user.avatar ? user.avatar : ''}
                 alt="Segun Adebayo"
             />
             <h1>
-                {user.name}
+                {user.name ? user.name : ''}
             </h1>
-            <p>Repositories: {user.repos}</p>
+            <p>Repositories: {user.repos ? user.repos : ''}</p>
         </div>
     )
 }

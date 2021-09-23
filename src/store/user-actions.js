@@ -17,7 +17,7 @@ export const fetchUserData = (name) => {
         const user = await fetchData();
 
         dispatch(
-            userActions.addUser({
+            userActions.newUser({
                 user
             })
         );
